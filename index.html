@@ -1,35 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sneaker Maison</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+<script>
+
+const faders = document.querySelectorAll(".fade");
+
+function reveal(){
+
+const trigger = window.innerHeight * 0.85;
+
+faders.forEach(el =>{
+
+const top = el.getBoundingClientRect().top;
+
+if(top < trigger){
+el.classList.add("show");
+}
+
+});
+
+}
+
+window.addEventListener("scroll", reveal);
+
+reveal();
+
+</script>
+
 <body>
-    <header id="ecommerce-header">
-  <a href="#" class="logo">
-    <img src="assets/logo.png" alt="Logo Nhóm" />
-  </a>
-  <nav>
-    <ul id="navbar">
-      <li><a class="active" href="index.html">Trang chủ</a></li>
-      <li><a href="shop.html">Sản phẩm</a></li>
-      <li><a href="blog.html">Tin tức</a></li>
-      <li><a href="contact.html">Liên hệ</a></li>
-    </ul>
-  </nav>
+
+
+
+<header>
+
+<div class="logo">
+<img src="https://cdn.cosmos.so/108f74a7-7883-4643-9bca-e42c1d2d5309?format=jpeg" alt="logo">
+</div>
+
+<nav>
+
+<a href="#">Home</a>
+<a href="#">Shop</a>
+<a href="#">Collection</a>
+<a href="#">Contact</a>
+
+</nav>
+
 </header>
 
-<section id="hero-banner">
-  <div class="hero-content">
-    <h4>Giao dịch trong ưu đãi</h4>
-    <h2>Ưu đãi siêu giá trị</h2>
-    <p>Tiết kiệm nhiều hơn với các coupon & giảm giá lên đến 70% cho mọi mặt hàng!</p>
-    <button class="cta-btn">Mua Ngay</button>
-  </div>
+
+
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>New Sneaker Collection</h1>
+
+<p>Minimal design. Maximum comfort.</p>
+
+<button>Explore</button>
+
+</div>
+
 </section>
+
+
+
+<section class="feature">
+
+<div class="box">
+<h3>Free Shipping</h3>
+</div>
+
+<div class="box">
+<h3>Premium Quality</h3>
+</div>
+
+<div class="box">
+<h3>Fast Delivery</h3>
+</div>
+
+<div class="box">
+<h3>Secure Payment</h3>
+</div>
+
+</section>
+
+
+
+<section class="products">
+
+<h2>Featured Sneakers</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<img src="">
+<h4>Nike Runner</h4>
+<p>$120</p>
+
+</div>
+
+<div class="card">
+
+<img src=""">
+<h4>Adidas Boost</h4>
+<p>$110</p>
+
+</div>
+
+<div class="card">
+
+<img src="">
+<h4>Jordan Classic</h4>
+<p>$150</p>
+
+</div>
+
+<div class="card">
+
+<img src="">
+<h4>Puma RS</h4>
+<p>$95</p>
+
+</div>
+
+<div class="card">
+
+<img src="">
+<h4>Converse High</h4>
+<p>$85</p>
+
+</div>
+
+<div class="card">
+
+<img src="">
+<h4>New Balance</h4>
+<p>$100</p>
+
+</div>
+
+<div class="card">
+
+<img src="">
+<h4>Vans Classic</h4>
+<p>$80</p>
+
+</div>
+
+<div class="card">
+
+<img src="">
+<h4>Nike Air</h4>
+<p>$140</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="products">
+
+<h2>New Arrivals</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<img src="assets/img/n1.jpg">
+<h4>Nike Air Max</h4>
+<p>$160</p>
+
+</div>
+
+<div class="card">
+
+<img src="assets/img/n2.jpg">
+<h4>Adidas Ultra</h4>
+<p>$150</p>
+
+</div>
+
+<div class="card">
+
+<img src="assets/img/n3.jpg">
+<h4>Puma Modern</h4>
+<p>$130</p>
+
+</div>
+
+<div class="card">
+
+<img src="assets/img/n4.jpg">
+<h4>Vans Skate</h4>
+<p>$110</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<section class="banner">
+
+<div class="banner-box">
+
+<h2>Summer Sale</h2>
+<p>Up to 50% off</p>
+
+</div>
+
+<div class="banner-box">
+
+<h2>Limited Edition</h2>
+<p>New drop</p>
+
+</div>
+
+</section>
+
+
+
+<section class="newsletter">
+
+<h3>Subscribe</h3>
+
+<input type="email" placeholder="Enter your email">
+
+<button>Join</button>
+
+</section>
+
+
+
+<footer>
+
+<p>© Sneaker Maison 2026</p>
+
+</footer>
+
+
 </body>
 </html>
-
-

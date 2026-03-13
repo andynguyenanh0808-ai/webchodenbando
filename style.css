@@ -1,106 +1,252 @@
-#ecommerce-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 80px;
-  background-color: #E3E6F3;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
-  position: sticky;
-  top: 0;
-  z-index: 999;
+
+
+body{
+background:white;
+color:black;
+font-family:'Cormorant Garamond', serif;
+margin:0;
 }
 
-#ecommerce-header .logo img {
-  max-height: 40px; 
+h1,h2,h3{
+letter-spacing:10px;
+font-weight:200;
 }
 
-#ecommerce-header nav #navbar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  list-style: none; 
-  margin: 0;
-  padding: 0;
-}
-
-#ecommerce-header nav #navbar li {
-  padding: 0 20px;
-  position: relative;
-}
-
-#ecommerce-header nav #navbar li a {
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 600;
-  color: #1a1a1a;
-  transition: 0.3s ease;
-}
-
-#ecommerce-header nav #navbar li a:hover,
-#ecommerce-header nav #navbar li a.active {
-  color: #088178;
-}
-
-#ecommerce-header nav #navbar li a::after {
-  content: "";
-  width: 0;
-  height: 2px;
-  background: #7e3f3f;
-  position: absolute;
-  bottom: -4px;
-  left: 20px;
-  transition: 0.3s ease;
-}
-
-#hero-banner {
-  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200&h=600&fit=crop");
-  background-color: #f5f5f5;
-  height: 90vh;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0 80px;
-}
-
-#hero-banner .hero-content h4 {
-  padding-bottom: 15px;
-  font-size: 20px;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-#hero-banner .hero-content h2 {
-  font-size: 46px;
-  color: #fff;
-  line-height: 1.2;
-  margin: 0 0 15px 0;
-  font-weight: 800;
-}
-
-#hero-banner .hero-content p {
-  font-size: 16px;
-  color: #f0f0f0;
-  margin: 0 0 20px 0;
-  max-width: 500px;
-}
-
-#hero-banner .cta-btn {
-  background-color: transparent;
-  color: #088178;
-  border: 2px solid #088178;
-  padding: 14px 40px;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 4px;
+p{
+line-height:1.8;
+letter-spacing:10px;
 }
 
 
 
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:all 1s ease;
+}
 
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
+
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:30px 80px;
+letter-spacing:10px;
+background:black;
+color:white;
+}
+
+.logo img{
+height:80px;
+width:auto;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+font-weight:300;
+letter-spacing:5px;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#bbbbbb;
+}
+
+
+.video-thumb{
+width:100%;
+height:400px;
+background:black;
+
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.video-thumb iframe{
+width:80%;
+height:100%;
+border:none;
+}
+
+
+
+.hero{
+height:80vh;
+
+background:url("");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:65px;
+letter-spacing:10px;
+}
+
+.hero button{
+margin-top:25px;
+
+padding:14px 40px;
+
+background:white;
+color:black;
+
+border:none;
+
+font-weight:bold;
+cursor:pointer;
+
+transition:0.4s;
+}
+
+.hero button:hover{
+background:black;
+color:white;
+}
+
+
+
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:opacity 1s ease, transform 1s ease;
+}
+
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
+
+.feature{
+display:flex;
+justify-content:center;
+
+gap:70px;
+
+padding:80px 10%;
+
+background:black;
+color:white;
+
+text-align:center;
+}
+
+.feature div{
+max-width:200px;
+}
+
+
+
+
+.products{
+padding:100px 10%;
+text-align:center;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:35px;
+}
+
+.card{
+border:1px solid black;
+padding:10px;
+transition:0.4s;
+background:white;
+}
+
+.card:hover{
+transform:scale(1.05);
+background:black;
+color:white;
+}
+
+.card img{
+width:100%;
+height:auto;
+}
+
+
+
+.banner{
+display:flex;
+gap:30px;
+padding:100px 10%;
+}
+
+.banner-box{
+flex:1;
+background:black;
+color:white;
+
+height:220px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+letter-spacing:2px;
+}
+
+
+
+
+.newsletter{
+background:black;
+color:white;
+
+padding:100px 10%;
+text-align:center;
+}
+
+.newsletter input{
+padding:12px;
+width:260px;
+border:none;
+margin-right:10px;
+}
+
+.newsletter button{
+padding:12px 25px;
+background:white;
+border:none;
+cursor:pointer;
+transition:0.3s;
+}
+
+.newsletter button:hover{
+background:#dddddd;
+}
+
+
+
+
+footer{
+background:black;
+color:white;
+
+padding:40px;
+
+text-align:center;
+letter-spacing:2px;
+}
