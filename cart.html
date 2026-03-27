@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeMaison - Cart</title>
+    <link rel="stylesheet" href="style.css?v=T35Final">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html">
+            <img src="845049df-608a-449f-aaaa-72c47c4b4c92.jpg" alt="logo">
+        </a>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
+<section class="cart-section fade">
+    <h2>Shopping Cart</h2>
+    
+    <div class="cart-container">
+        <div class="cart-items">
+            <div class="cart-item">
+                <img src="https://cdn.cosmos.so/1dbb7b72-9159-41f7-a215-8030f528e2c6?format=jpeg" alt="The Denam">
+                <div class="item-details">
+                    <h4>The Denam</h4>
+                    <p>Size: M</p>
+                    <p class="item-price">360,000,000 VND</p>
+                </div>
+                <div class="item-quantity">
+                    <input type="number" value="1" min="1">
+                </div>
+            </div>
+            
+            <div class="cart-item">
+                <img src="https://cdn.cosmos.so/5a8ab169-a062-44c7-9c5b-bf9b36a7d2dd?format=jpeg" alt="The Anderson">
+                <div class="item-details">
+                    <h4>The Anderson</h4>
+                    <p>Size: L</p>
+                    <p class="item-price">67,000,000 VND</p>
+                </div>
+                <div class="item-quantity">
+                    <input type="number" value="1" min="1">
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <h3>Order Summary</h3>
+            <div class="summary-line">
+                <span>Subtotal</span>
+                <span>427,000,000 VND</span>
+            </div>
+            <div class="summary-line">
+                <span>Shipping</span>
+                <span>Free</span>
+            </div>
+            <hr>
+            <div class="summary-line total">
+                <span>Total</span>
+                <span>427,000,000 VND</span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; Sneaker DeMaison 2026</p>
+</footer>
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => entry.isIntersecting && entry.target.classList.add("show"));
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
