@@ -110,32 +110,6 @@
     }, observerOptions);
 
     document.querySelectorAll('.fade').forEach(el => observer.observe(el));
-
-    // --- BIẾN THẺ SẢN PHẨM THÀNH NÚT THÊM VÀO GIỎ ---
-    // Lấy toàn bộ các khu vực thẻ ".card" trên trang
-    let cacTheSanPham = document.querySelectorAll('.card');
-    
-    // Duyệt qua từng thẻ
-    for (let i = 0; i < cacTheSanPham.length; i++) {
-        let theCard = cacTheSanPham[i];
-        
-        // Gỡ bỏ sự kiện chuyển trang cũ được gắn sẵn trong HTML
-        theCard.removeAttribute('onclick');
-        
-        // Cài đặt sự kiện: Mỗi khi click vào thẻ này thì làm gì?
-        theCard.addEventListener('click', function() {
-            // Lấy tên (h4), giá (p), và hình (img) bên trong thẻ được click (this)
-            let tenSanPham = this.querySelector('h4').innerText;
-            let giaChuoi = this.querySelector('p').innerText;
-            let hinhAnh = this.querySelector('img').src;
-            
-            // Xử lý giá tiền (Ví dụ: "360.000.000 VND" -> 360000000)
-            let giaSo = Number(giaChuoi.replace(/\./g, '').replace(' VND', ''));
-            
-            // Gọi hàm themVaoGio đã tạo bên cart.js
-            themVaoGio(tenSanPham, giaSo, hinhAnh);
-        });
-    }
 </script>
 
 </body>

@@ -22,7 +22,44 @@ function luuGioHang(gioHangMoi) {
     let duLieuDungGoi = JSON.stringify(gioHangMoi);
     // Lưu vào bộ nhớ với từ khóa 'gioHangCaNhan'
     localStorage.setItem('gioHangCaNhan', duLieuDungGoi);
+    // Tự động cập nhật số lượng trên thanh menu
+    capNhatIconGioHang();
 }
+
+// Cập nhật số lượng sản phẩm hiển thị ngay trên chữ "Cart" ở thanh Menu
+function capNhatIconGioHang() {
+    let gioHang = layGioHang();
+    let tongSoLuong = 0;
+    
+    // Tính tổng số lượng đồ trong giỏ
+    for (let i = 0; i < gioHang.length; i++) {
+        tongSoLuong += gioHang[i].soLuong;
+    }
+    
+    // Tìm đường dẫn Cart ở thanh điều hướng trên cùng
+    let theCartNav = document.querySelector('nav a[href="cart.html"]');
+    if (theCartNav) {
+        if (tongSoLuong > 0) {
+            theCartNav.innerText = 'Cart (' + tongSoLuong + ')';
+            theCartNav.style.color = '#ff4d4f'; // Cho màu đỏ để dễ nhận biết
+            theCartNav.style.fontWeight = 'bold';
+        } else {
+            theCartNav.innerText = 'Cart';
+            theCartNav.style.color = '';
+            theCartNav.style.fontWeight = 'normal';
+        }
+    }
+}
+
+// --- TỰ ĐỘNG ĐỒNG BỘ KHI CHUYỂN TAB TRÌNH DUYỆT ---
+// Nếu bạn mở nhiều tab (một tab Shop, một tab Cart), 
+// khi thao tác tab Shop, tab Cart sẽ tự nhận biết và rải lại giao diện!
+window.addEventListener('storage', function(e) {
+    if (e.key === 'gioHangCaNhan') {
+        capNhatIconGioHang();
+        hienThiGioHang(); // Vẽ lại giỏ hàng trong tab đang mở
+    }
+});
 
 // Hàm dùng để hiện một thông báo nhỏ khi người dùng bấm thêm sản phẩm
 function hienThongBao(noiDung) {
@@ -33,18 +70,26 @@ function hienThongBao(noiDung) {
     if (!theThongBao) {
         theThongBao = document.createElement('div');
         theThongBao.id = 'thongBaoGioHang';
+        theThongBao.className = 'thongBao';
         document.body.appendChild(theThongBao);
     }
 
     // Gán nội dung muốn thông báo
     theThongBao.innerText = noiDung;
+    
+    // Đặt lại class về mặt định
+    theThongBao.className = 'thongBao';
+
+    // Buộc trình duyệt "tính toán lại giao diện" (reflow) để hiệu ứng chuyển động có thể chạy lại từ đầu
+    void theThongBao.offsetWidth;
+
     // Cho hiện thẻ lên bằng class 'hien'
     theThongBao.className = 'thongBao hien';
 
-    // Sau 2 giây (2000 milliseconds) thì ẩn thông báo đi
+    // Sau 2.5 giây (2500 milliseconds) thì ẩn thông báo đi
     setTimeout(function() {
         theThongBao.className = 'thongBao';
-    }, 2000);
+    }, 2500);
 }
 
 // Hàm này dùng khi bấm nút "Thêm vào giỏ" trên toàn bộ thẻ sản phẩm
@@ -174,4 +219,57 @@ function hienThiGioHang() {
 // Lệnh này quan trọng để chạy hàm hienThiGioHang() khi trang web cart.html vừa tải xong
 document.addEventListener('DOMContentLoaded', function() {
     hienThiGioHang();
+    capNhatIconGioHang(); // Đồng bộ icon trên thanh điều hướng ngay khi trang web vừa mở
+    
+    // --- TỰ ĐỘNG THÊM NÚT "+" CHO TẤT CẢ SẢN PHẨM Ở SHOP VÀ BLOG ---
+    let tatCaSanPham = document.querySelectorAll('.card, .blog-card');
+    
+    // Duyệt qua từng sản phẩm tìm thấy
+    tatCaSanPham.forEach(function(theSanPham) {
+        // Tạo ra nút hình tròn mang dấu +
+        let nutCong = document.createElement('div');
+        nutCong.innerHTML = '+';
+        nutCong.className = 'btn-them-vao-gio'; // Đã style bên style.css
+        
+        // Cài đặt sự kiện: Chỉ thêm vào giỏ khi người dùng click vào dấu + này
+        nutCong.addEventListener('click', function(e) {
+            e.stopPropagation(); // Ngăn trình duyệt nhảy sang trang chi tiết
+            e.preventDefault();
+            
+            // Tìm tên (thường nằm trong h4 hoặc h3)
+            let tenSP = theSanPham.querySelector('h4') ? theSanPham.querySelector('h4').innerText : (theSanPham.querySelector('h3') ? theSanPham.querySelector('h3').innerText : 'Sản phẩm mới');
+            
+            // Tìm giá (nếu có, không có thì xem như 0đ)
+            let giaSP = 0;
+            let cacTheP = theSanPham.querySelectorAll('p');
+            cacTheP.forEach(function(theP) {
+                if (theP.innerText.includes('VND')) {
+                    giaSP = Number(theP.innerText.replace(/\./g, '').replace(' VND', ''));
+                }
+            });
+            
+            // Lấy hình ảnh
+            let theIMG = theSanPham.querySelector('img');
+            let hinhSP = theIMG ? theIMG.src : '';
+            
+            // Thực hiện việc thêm vào giỏ hàng
+            themVaoGio(tenSP, giaSP, hinhSP);
+        });
+        
+        // Gắn nút + vào mỗi sản phẩm
+        theSanPham.appendChild(nutCong);
+        
+        // Xóa thuộc tính onclick cứng trong HTML nếu có
+        theSanPham.removeAttribute('onclick');
+        
+        // Đặt lại sự kiện: Khi click phần khác ngoài nút + thì sẽ sang trang xem chi tiết
+        theSanPham.style.cursor = 'pointer';
+        theSanPham.addEventListener('click', function() {
+            // Tùy theo nơi bạn click, nó sẽ đi đến mô tả chi tiết của món đó
+            window.location.href = '#'; 
+            // Ta có thể giữ theSanPham.onclick = function() { window.location.href='product.html' }
+            // nhưng ở đây đặt về # tạm thời để ko lỗi chuyển trang (như bản thiết kế ban đầu)
+            window.location.href = 'product.html';
+        });
+    });
 });
