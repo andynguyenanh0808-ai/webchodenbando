@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeMaison - Contact</title>
+    <link rel="stylesheet" href="style.css?v=T35Final">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html">
+            <img src="845049df-608a-449f-aaaa-72c47c4b4c92.jpg" alt="logo">
+        </a>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
+<section class="contact-section fade">
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <p>Have a question about our collections or a specific order? Reach out to us.</p>
+            <br>
+            <p><strong>Email</strong><br>concierge@demaison.com</p>
+            <br>
+            <p><strong>Studio</strong><br>12 Avant-Garde District, HCMC, VN</p>
+        </div>
+        <div class="contact-form-container">
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject" required>
+                <textarea placeholder="Your Message" rows="6" required></textarea>
+                <button type="button" onclick="alert('Message sent successfully!')">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; Sneaker DeMaison 2026</p>
+</footer>
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => entry.isIntersecting && entry.target.classList.add("show"));
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

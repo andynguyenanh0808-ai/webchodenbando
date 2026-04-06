@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeMaison - Shop</title>
+    <link rel="stylesheet" href="style.css?v=T35Final">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html">
+            <img src="845049df-608a-449f-aaaa-72c47c4b4c92.jpg" alt="logo">
+        </a>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
+<section class="products fade" style="padding-top: 50px;">
+    <h2>All Products</h2>
+    <div class="grid">
+        <div class="card fade" onclick="window.location.href='product.html'" style="cursor: pointer;">
+            <div class="img-container"><img src="https://cdn.cosmos.so/1dbb7b72-9159-41f7-a215-8030f528e2c6?format=jpeg" alt="The Denam"></div>
+            <h4>The Denam</h4>
+            <p>360.000.000 VND</p>
+        </div>
+        <div class="card fade" onclick="window.location.href='product.html'" style="cursor: pointer;">
+            <div class="img-container"><img src="https://cdn.cosmos.so/5a8ab169-a062-44c7-9c5b-bf9b36a7d2dd?format=jpeg" alt="The Anderson"></div>
+            <h4>The Anderson</h4>
+            <p>67.000.000 VND</p>
+        </div>
+        <div class="card fade" onclick="window.location.href='product.html'" style="cursor: pointer;">
+            <div class="img-container"><img src="https://cdn.cosmos.so/bb3fa056-c90a-4cfc-abca-1472363c588d?format=jpeg" alt="The OWen"></div>
+            <h4>The OWen</h4>
+            <p>69.000.000 VND</p>
+        </div>
+        <div class="card fade" onclick="window.location.href='product.html'" style="cursor: pointer;">
+            <div class="img-container"><img src="https://cdn.cosmos.so/301187b0-786c-48d6-9e27-53fbebfc40c2?format=jpeg" alt="Tab"></div>
+            <h4>Tab Classic</h4>
+            <p>100.000 VND</p>
+        </div>
+        <div class="card fade" onclick="window.location.href='product.html'" style="cursor: pointer;">
+            <div class="img-container"><img src="images/avant_sneaker_1_1774579669642.png" alt="The Denam II"></div>
+            <h4>The Denam II</h4>
+            <p>365.000.000 VND</p>
+        </div>
+        <div class="card fade" onclick="window.location.href='product.html'" style="cursor: pointer;">
+            <div class="img-container"><img src="images/avant_boot_2_1774579685262.png" alt="Anderson Dark"></div>
+            <h4>Anderson Dark</h4>
+            <p>68.000.000 VND</p>
+        </div>
+        <div class="card fade" onclick="window.location.href='product.html'" style="cursor: pointer;">
+            <div class="img-container"><img src="images/avant_slipon_3_1774579704152.png" alt="Owen Limited"></div>
+            <h4>Owen Limited</h4>
+            <p>75.000.000 VND</p>
+        </div>
+        <div class="card fade" onclick="window.location.href='product.html'" style="cursor: pointer;">
+            <div class="img-container"><img src="images/avant_canvas_4_1774579721768.png" alt="Tab Neon"></div>
+            <h4>Tab Neon</h4>
+            <p>120.000 VND</p>
+        </div>
+        <div class="card fade" onclick="window.location.href='product.html'" style="cursor: pointer;">
+            <div class="img-container"><img src="images/avant_brutalist_5_1774579742057.png" alt="Future Denam"></div>
+            <h4>Future Denam</h4>
+            <p>400.000.000 VND</p>
+        </div>
+        <div class="card fade" onclick="window.location.href='product.html'" style="cursor: pointer;">
+            <div class="img-container"><img src="images/avant_neogothic_8_1774579758747.png" alt="Anderson Proto"></div>
+            <h4>Anderson Proto</h4>
+            <p>72.000.000 VND</p>
+        </div>
+        <div class="card fade" onclick="window.location.href='product.html'" style="cursor: pointer;">
+            <div class="img-container"><img src="https://cdn.cosmos.so/1dbb7b72-9159-41f7-a215-8030f528e2c6?format=jpeg" alt="Owen Concept"></div>
+            <h4>Owen Concept</h4>
+            <p>80.000.000 VND</p>
+        </div>
+        <div class="card fade" onclick="window.location.href='product.html'" style="cursor: pointer;">
+            <div class="img-container"><img src="https://cdn.cosmos.so/bb3fa056-c90a-4cfc-abca-1472363c588d?format=jpeg" alt="Tab X"></div>
+            <h4>Tab X</h4>
+            <p>200.000 VND</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>Â© Sneaker DeMaison 2026</p>
+</footer>
+
+<!-- Dẫn file code Giỏ Hàng vào -->
+<script src="cart.js"></script>
+<script>
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+
+    // --- BIẾN THẺ SẢN PHẨM THÀNH NÚT THÊM VÀO GIỎ ---
+    // Lấy toàn bộ các khu vực thẻ ".card" trên trang
+    let cacTheSanPham = document.querySelectorAll('.card');
+    
+    // Duyệt qua từng thẻ
+    for (let i = 0; i < cacTheSanPham.length; i++) {
+        let theCard = cacTheSanPham[i];
+        
+        // Gỡ bỏ sự kiện chuyển trang cũ được gắn sẵn trong HTML
+        theCard.removeAttribute('onclick');
+        
+        // Cài đặt sự kiện: Mỗi khi click vào thẻ này thì làm gì?
+        theCard.addEventListener('click', function() {
+            // Lấy tên (h4), giá (p), và hình (img) bên trong thẻ được click (this)
+            let tenSanPham = this.querySelector('h4').innerText;
+            let giaChuoi = this.querySelector('p').innerText;
+            let hinhAnh = this.querySelector('img').src;
+            
+            // Xử lý giá tiền (Ví dụ: "360.000.000 VND" -> 360000000)
+            let giaSo = Number(giaChuoi.replace(/\./g, '').replace(' VND', ''));
+            
+            // Gọi hàm themVaoGio đã tạo bên cart.js
+            themVaoGio(tenSanPham, giaSo, hinhAnh);
+        });
+    }
+</script>
+
+</body>
+</html>

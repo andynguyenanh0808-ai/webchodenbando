@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeMaison - The Journal</title>
+    <link rel="stylesheet" href="style.css?v=T35Final">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html">
+            <img src="845049df-608a-449f-aaaa-72c47c4b4c92.jpg" alt="logo">
+        </a>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
+<section class="blog-section fade">
+    <h2 style="text-align: center;">The Journal</h2>
+    <div class="blog-grid">
+        <div class="blog-card fade">
+            <div class="blog-img">
+                <img src="https://cdn.cosmos.so/f76182bd-5669-46ce-bcb6-abc584e641f4?format=jpeg" alt="Blog 1">
+            </div>
+            <div class="blog-content">
+                <p class="date">OCTOBER 12, 2026</p>
+                <h3>Redefining Silhouettes</h3>
+                <p>An exploration into the architectural shapes that challenge traditional notions of beauty in our latest autumn drop.</p>
+                <a href="#" class="read-more">Read More &rarr;</a>
+            </div>
+        </div>
+        <div class="blog-card fade">
+            <div class="blog-img">
+                <img src="https://cdn.cosmos.so/908068e3-5d80-45a4-9cca-b4ac497513ca?format=jpeg" alt="Blog 2">
+            </div>
+            <div class="blog-content">
+                <p class="date">SEPTEMBER 28, 2026</p>
+                <h3>The Minimalist Wardrobe</h3>
+                <p>How to construct a versatile capsule wardrobe centered around avant-garde, monochrome pieces for everyday wear.</p>
+                <a href="#" class="read-more">Read More &rarr;</a>
+            </div>
+        </div>
+        <div class="blog-card fade">
+            <div class="blog-img">
+                <img src="images/avant_sneaker_1_1774579669642.png" alt="Blog 3">
+            </div>
+            <div class="blog-content">
+                <p class="date">AUGUST 15, 2026</p>
+                <h3>Material Innovation</h3>
+                <p>Behind the scenes of selecting unconventional materials that give The Denam its distinctive matte finish and durability.</p>
+                <a href="#" class="read-more">Read More &rarr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; Sneaker DeMaison 2026</p>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => entry.isIntersecting && entry.target.classList.add("show"));
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

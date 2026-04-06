@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeMaison - Product Details</title>
+    <link rel="stylesheet" href="style.css?v=T35Final">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html">
+            <img src="845049df-608a-449f-aaaa-72c47c4b4c92.jpg" alt="logo">
+        </a>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
+<section class="product-detail fade">
+    <div class="product-image">
+        <img src="https://cdn.cosmos.so/1dbb7b72-9159-41f7-a215-8030f528e2c6?format=jpeg" alt="The Denam">
+    </div>
+    <div class="product-info">
+        <h2>The Denam</h2>
+        <p class="price">360.000.000 VND</p>
+        <p class="description">
+            A visionary force in avant-garde fashion. Known for pushing boundaries and redefining silhouettes, BiAen transforms garments into bold statements of art. The Denam is the epitome of maximum minimal design, featuring unconventional materials and an architectural shape that challenges traditional notions of beauty and style. 
+        </p>
+        <div class="sizes">
+            <p>Select Size</p>
+            <button>S</button><button>M</button><button>L</button><button>XL</button>
+        </div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+</section>
+
+<footer>
+    <p>Â© Sneaker DeMaison 2026</p>
+</footer>
+
+<script>
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
