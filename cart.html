@@ -5,29 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DeMaison - Cart</title>
     <link rel="stylesheet" href="style.css?v=T35Final">
-    <style>
-        /* Thêm một chút CSS cho nút Xóa sản phẩm để nó trông gọn gàng hơn */
-        .remove-btn {
-            background: none;
-            border: none;
-            color: #d9534f;
-            cursor: pointer;
-            padding: 0;
-            margin-top: 10px;
-            font-size: 14px;
-            text-decoration: underline;
-        }
-        .remove-btn:hover {
-            color: #c9302c;
-        }
-        .empty-cart-msg {
-            text-align: center;
-            font-size: 18px;
-            color: #666;
-            padding: 40px 0;
-            display: none; /* Sẽ được JS hiển thị khi giỏ hàng trống */
-        }
-    </style>
 </head>
 <body>
 
@@ -51,43 +28,15 @@
     <h2>Shopping Cart</h2>
     
     <div class="cart-container">
-        <div class="cart-items" id="cart-items-container">
-            <div class="cart-item" data-price="360000000">
-                <img src="https://cdn.cosmos.so/1dbb7b72-9159-41f7-a215-8030f528e2c6?format=jpeg" alt="The Denam">
-                <div class="item-details">
-                    <h4>The Denam</h4>
-                    <p>Size: M</p>
-                    <p class="item-price">360,000,000 VND</p>
-                    <button class="remove-btn">Remove</button>
-                </div>
-                <div class="item-quantity">
-                    <input type="number" class="qty-input" value="1" min="1">
-                </div>
-            </div>
-            
-            <div class="cart-item" data-price="670000000">
-                <img src="https://cdn.cosmos.so/5a8ab169-a062-44c7-9c5b-bf9b36a7d2dd?format=jpeg" alt="The Anderson">
-                <div class="item-details">
-                    <h4>The Anderson</h4>
-                    <p>Size: L</p>
-                    <p class="item-price">67,000,000 VND</p>
-                    <button class="remove-btn">Remove</button>
-                </div>
-                <div class="item-quantity">
-                    <input type="number" class="qty-input" value="1" min="1">
-                </div>
-            </div>
-        </div>
-        
-        <div id="empty-message" class="empty-cart-msg">
-            Your cart is currently empty.
+        <div class="cart-items">
+            <!-- Khu vực này sẽ được cart.js tự động điền danh sách sản phẩm vào -->
         </div>
 
         <div class="cart-summary">
             <h3>Order Summary</h3>
             <div class="summary-line">
                 <span>Subtotal</span>
-                <span id="subtotal-val">427,000,000 VND</span>
+                <span>427,000,000 VND</span>
             </div>
             <div class="summary-line">
                 <span>Shipping</span>
@@ -96,7 +45,7 @@
             <hr>
             <div class="summary-line total">
                 <span>Total</span>
-                <span id="total-val">427,000,000 VND</span>
+                <span>427,000,000 VND</span>
             </div>
             <button class="checkout-btn">Proceed to Checkout</button>
         </div>
@@ -106,85 +55,13 @@
 <footer>
     <p>&copy; Sneaker DeMaison 2026</p>
 </footer>
-
+<!-- Script giỏ hàng của chúng ta -->
+<script src="cart.js"></script>
 <script>
-    // Xử lý hiệu ứng fade (giữ nguyên từ code cũ)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => entry.isIntersecting && entry.target.classList.add("show"));
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade').forEach(el => observer.observe(el));
-
-    // --- LOGIC XỬ LÝ GIỎ HÀNG ---
-    document.addEventListener('DOMContentLoaded', () => {
-        const cartItemsContainer = document.getElementById('cart-items-container');
-        const subtotalElement = document.getElementById('subtotal-val');
-        const totalElement = document.getElementById('total-val');
-        const emptyMessage = document.getElementById('empty-message');
-        const checkoutBtn = document.querySelector('.checkout-btn');
-
-        // Hàm tính toán và cập nhật lại tổng tiền
-        function updateCartTotals() {
-            const items = document.querySelectorAll('.cart-item');
-            let total = 0;
-
-            if (items.length === 0) {
-                // Nếu giỏ hàng trống
-                emptyMessage.style.display = 'block';
-                checkoutBtn.disabled = true;
-                checkoutBtn.style.opacity = '0.5';
-                checkoutBtn.style.cursor = 'not-allowed';
-            } else {
-                emptyMessage.style.display = 'none';
-                checkoutBtn.disabled = false;
-                checkoutBtn.style.opacity = '1';
-                checkoutBtn.style.cursor = 'pointer';
-            }
-
-            // Lặp qua từng sản phẩm để tính tổng
-            items.forEach(item => {
-                const price = parseFloat(item.getAttribute('data-price'));
-                const quantityInput = item.querySelector('.qty-input');
-                let quantity = parseInt(quantityInput.value);
-
-                // Đảm bảo số lượng không thể nhỏ hơn 1
-                if (isNaN(quantity) || quantity < 1) {
-                    quantity = 1;
-                    quantityInput.value = 1;
-                }
-
-                total += price * quantity;
-            });
-
-            // Định dạng số thành tiền tệ (VND)
-            const formattedTotal = new Intl.NumberFormat('vi-VN').format(total) + ' VND';
-            
-            // Cập nhật lên giao diện
-            subtotalElement.textContent = formattedTotal;
-            totalElement.textContent = formattedTotal;
-        }
-
-        // Lắng nghe sự kiện thay đổi số lượng (Event Delegation)
-        cartItemsContainer.addEventListener('input', (e) => {
-            if (e.target.classList.contains('qty-input')) {
-                updateCartTotals();
-            }
-        });
-
-        // Lắng nghe sự kiện click nút Xóa (Event Delegation)
-        cartItemsContainer.addEventListener('click', (e) => {
-            if (e.target.classList.contains('remove-btn')) {
-                // Tìm thẻ div chứa sản phẩm đó và xóa khỏi DOM
-                const itemToRemove = e.target.closest('.cart-item');
-                itemToRemove.remove();
-                
-                // Cập nhật lại tổng tiền sau khi xóa
-                updateCartTotals();
-            }
-        });
-
-        // Gọi hàm tính toán lần đầu khi trang vừa load xong
-        updateCartTotals();
-    });
 </script>
 </body>
 </html>

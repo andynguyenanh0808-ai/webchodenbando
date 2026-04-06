@@ -1836,3 +1836,51 @@ transform:scale(1.03);
     }
 }
 
+/* --- Toast Notification cho Giỏ Hàng --- */
+.thongBao {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: bottom 0.4s ease-in-out;
+    z-index: 9999;
+}
+
+.thongBao.hien {
+    bottom: 30px;
+}
+
+/* Nút thêm vào giỏ hàng hình tròn màu đen */
+.btn-them-vao-gio {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s, background-color 0.2s;
+    z-index: 10;
+}
+
+.btn-them-vao-gio:hover {
+    background-color: #333;
+    transform: scale(1.1);
+}
+
+.card, .blog-card {
+    position: relative; /* Cần để hút nút tròn xuống góc dưới thẻ */
+}
